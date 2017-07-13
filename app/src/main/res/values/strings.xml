@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Where2pee</string>
+    <string name="username">昵称</string>
+    <string name="check_code">验证码</string>
+    <string name="get_check_code">获取验证码</string>
+    <string name="password">密码</string>
+    <string name="register">注册</string>
+    <string name="phone_number">手机号</string>
+    <string name="seconds_after_get">秒后再次获取</string>
+    <string name="please_click_request_check_code">请点击发送验证码按钮</string>
 </resources>
