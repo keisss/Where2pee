@@ -8,4 +8,17 @@
     <string name="phone_number">手机号</string>
     <string name="seconds_after_get">秒后再次获取</string>
     <string name="please_click_request_check_code">请点击发送验证码按钮</string>
+    <string name="register_success">注册成功,正在跳转</string>
+    <string name="login_out_of_date">登录过期,请重新登录</string>
+    <string name="forget_password">忘记密码</string>
+    <string name="login">登录</string>
+    <string name="password_must_longer_than_6">密码必须大于6位</string>
+    <string name="phone_number_cant_empty">手机号码不能为空</string>
+    <string name="send_check_code_success">验证码发送成功</string>
+    <string name="send_check_code_failed">验证码发送失败,请检查网络后重试</string>
+    <string name="nick_name_cant_empty">昵称不能为空</string>
+    <string name="pls_input_check_code">请输入验证码</string>
+    <string name="register_failed">注册失败,错误码:</string>
+    <string name="login_success">登录成功</string>
+    <string name="login_failed">登录失败,错误码</string>
 </resources>

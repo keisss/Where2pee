@@ -17,7 +17,7 @@ import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.keiss.where2pee.R;
 import cn.keiss.where2pee.bmob.bean.User;
-import cn.keiss.where2pee.util.FinalNumber;
+import cn.keiss.where2pee.util.Fields;
 import cn.keiss.where2pee.util.ToastUtil;
 
 
@@ -78,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
             tilRegisterUsername.setError("电话号不能为空");
         }else {
          phoneNumber = phoneNum.toString();
-            if (!phoneNumber.matches(FinalNumber.REGEX_MOBILE)){
+            if (!phoneNumber.matches(Fields.REGEX_MOBILE)){
                 tilRegisterUsername.setError("电话号码不合法");
             }else {
                 setCheckCodeBtnCountDown();
@@ -106,7 +106,7 @@ public class RegisterActivity extends AppCompatActivity {
                     second--;
                     btnRegisterGetCheckCode.setText(second + R.string.seconds_after_get);
                 }else {
-                    btnRegisterGetCheckCode.setText("获取验证码");
+                    btnRegisterGetCheckCode.setText(getString(R.string.get_check_code));
                     btnRegisterGetCheckCode.setClickable(true);
                     timer.cancel();
                 }
@@ -118,13 +118,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     //请求验证码
     private void requestCheckCode(String phoneNumber){
-        BmobSMS.requestSMSCode(phoneNumber,FinalNumber.SMS_MODE,new QueryListener<Integer>() {
+        BmobSMS.requestSMSCode(phoneNumber, Fields.SMS_MODE,new QueryListener<Integer>() {
             @Override
             public void done(Integer integer, BmobException e) {
                 if (e ==null){
-                    ToastUtil.showToast(RegisterActivity.this,"验证码发送成功");
+                    ToastUtil.showToast(RegisterActivity.this,getString(R.string.send_check_code_success));
                 }else {
-                    ToastUtil.showToast(RegisterActivity.this,"验证码发送失败,请检查网络后重试");
+                    ToastUtil.showToast(RegisterActivity.this,getString(R.string.send_check_code_failed));
                     haveCheckedCode = true;
                 }
             }
@@ -138,16 +138,16 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
         if (TextUtils.isEmpty(tilRegisterNickname.getEditText().getText())){
-            tilRegisterNickname.setError("昵称不能为空");
+            tilRegisterNickname.setError(getString(R.string.nick_name_cant_empty));
             return false;
         }
         if (TextUtils.isEmpty(tilRegisterCheckCode.getEditText().getText())){
-            tilRegisterCheckCode.setError("请输入验证码");
+            tilRegisterCheckCode.setError(getString(R.string.pls_input_check_code));
             return false;
         }
         if (TextUtils.isEmpty(tilRegisterPassword.getEditText().getText())
                 || tilRegisterPassword.getEditText().getText().length()<6 ){
-            tilRegisterPassword.setError("密码必须大于6位");
+            tilRegisterPassword.setError(getString(R.string.password_must_longer_than_6));
             return false;
         }
         return true;
@@ -173,7 +173,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (e == null){
                     registerSuccess();
                 }else {
-                    ToastUtil.showToast(RegisterActivity.this,e.toString());
+                    ToastUtil.showToast(RegisterActivity.this,getString(R.string.register_failed)+e.toString());
                 }
             }
         });
@@ -181,8 +181,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     //注册成功的回调
     private void registerSuccess(){
+        ToastUtil.showToast(this,getString(R.string.register_success));
         Intent intent = new Intent(this,MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
+        startActivity(intent);
+
+
     }
 
     private String getTextFromTil(TextInputLayout textInputLayout){
