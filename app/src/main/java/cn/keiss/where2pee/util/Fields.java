@@ -13,4 +13,15 @@ public class Fields {
     //sharePreference参数
     static final String SHARE_PREFERENCE_NAME = "app_preference";
     static final String IF_HAVE_LOGIN = "have_login";
+
+    //连续定位最多尝试次数
+    public static final int MORE_TRY_TIMES = 15;
+
+
+    //emptyView的status
+    public static final int GETING_POSITION = 0;
+    public static final int GET_POSITION_FAILED = 1;
+    public static final int SEARCH_RESULT_EMPTY = 2;
+    public static final int NET_UNAVAILABLE = 3;
+
 }

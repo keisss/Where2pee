@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackground"
+            >
+
+            <LinearLayout
+            android:id="@+id/layout_add_new_toilet_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/divider"
+            android:orientation="vertical"
+            android:showDividers="middle|end|beginning|none">
+
+            <RelativeLayout style="@style/line_box_style">
+
+                <TextView
+                    android:id="@+id/tv_add_toilet_position"
+                    style="@style/title_text_style"
+                    android:text="@string/position" />
+
+                <TextView
+                    android:id="@+id/tv_add_toilet_star"
+                    style="@style/title_text_style"
+                    android:layout_toEndOf="@id/tv_add_toilet_position"
+                    android:text="@string/star_code"
+                    android:textColor="@android:color/holo_blue_dark" />
+
+                <TextView
+                    style="@style/title_text_style"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@+id/tv_add_toilet_star"
+                    android:text="正在定位..."
+                    android:textColor="@color/secondary_text" />
+
+                <Button
+                    android:id="@+id/btn_add_toilet_set_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="手动选择位置" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/line_box_style">
+
+                <TextView
+                    android:id="@+id/tv_add_toilet_open_time"
+                    style="@style/title_text_style"
+                    android:text="@string/open_time" />
+
+                <TextView
+                    android:id="@+id/tv_add_toilet_star2"
+                    style="@style/title_text_style"
+                    android:layout_toEndOf="@id/tv_add_toilet_open_time"
+                    android:text="@string/star_code"
+                    android:textColor="@android:color/holo_blue_dark" />
+
+                <Button
+                    android:id="@+id/btn_add_toilet_start_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toEndOf="@id/tv_add_toilet_star2"
+                    android:text="@string/start_time">
+
+                </Button>
+
+                <TextView
+                    android:id="@+id/tv_add_toilet_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/btn_add_toilet_start_time"
+                    android:text="@string/line_code"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/btn_add_toilet_end_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@+id/tv_add_toilet_line"
+                    android:text="@string/end_time">
+
+                </Button>
+            </RelativeLayout>
+        </LinearLayout>
+
+            <LinearLayout
+            android:id="@+id/layout_add_new_toilet_top_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_add_new_toilet_top"
+            android:divider="@drawable/divider"
+            android:orientation="vertical"
+            android:showDividers="middle|end|beginning|none">
+
+            <RelativeLayout
+
+                style="@style/line_box_style"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/tv_add_toilet_add_photo"
+                    style="@style/title_text_style"
+                    android:layout_centerVertical="false"
+                    android:text="添加照片" />
+
+                <LinearLayout
+                    android:id="@+id/layout_add_new_toilet_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_add_toilet_add_photo"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/ibn_add_toilet_add_photo_1"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp" />
+
+                    <ImageButton
+                        android:id="@+id/ibn_add_toilet_add_photo_2"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp" />
+
+                    <ImageButton
+                        android:id="@+id/ibn_add_toilet_add_photo_3"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/layout_add_new_toilet_photo"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="清上传要添加的卫生间的照片,以便他人寻找"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                style="@style/line_box_style"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="1">
+
+                <TextView
+                    style="@style/title_text_style"
+                    android:text="评级" />
+
+                <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                    style="@style/Widget.MaterialRatingBar.RatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="30dp"
+                    android:numStars="5"
+                    android:rating="2.5"
+                    android:stepSize="0.5" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/line_box_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/title_text_style"
+                    android:text="是否收费" />
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="是" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="否" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/line_box_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/title_text_style"
+                    android:text="是否有手纸" />
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="是" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="否" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/line_box_style"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/title_text_style"
+                    android:layout_gravity="start"
+                    android:text="附加描述" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/line_box_style"
+                android:orientation="vertical">
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:hint="请输入有关的描述"
+                    android:paddingBottom="20dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+            <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_add_new_toilet_top_2"
+            android:text="提交" />
+        </RelativeLayout>
+</ScrollView>
+
+
+

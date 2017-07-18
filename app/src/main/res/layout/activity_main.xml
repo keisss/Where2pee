@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.keiss.where2pee.activity.MainActivity">
+    tools:context="cn.keiss.where2pee.activity.MainActivity"
+    android:background="@color/colorBackground">
 
     <LinearLayout
         android:id="@+id/layout_filter_bar"
@@ -12,20 +13,23 @@
         android:orientation="horizontal"
         android:background="@color/colorPrimary">
         <Button
+            android:id="@+id/btn_main_filter_distance"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="距离"/>
+            android:text="@string/distance"/>
         <Button
+            android:id="@+id/btn_main_filter_filter"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="筛选"
+            android:text="@string/filter"
             android:layout_weight="1"/>
         <Button
+            android:id="@+id/btn_main_filter_sort"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="排序"/>
+            android:text="@string/sort"/>
     </LinearLayout>
    <android.support.v7.widget.RecyclerView
        android:id="@+id/rv_toilet_list"
@@ -36,6 +40,7 @@
    </android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add_new_toilet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
