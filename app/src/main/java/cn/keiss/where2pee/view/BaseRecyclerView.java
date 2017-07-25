@@ -98,7 +98,7 @@ public class BaseRecyclerView extends RecyclerView {
         TextView textView = (TextView) emptyView.findViewById(R.id.tv_empty_view);
 
         switch (status){
-            case Fields.GETING_POSITION:
+            case Fields.GETTING_POSITION:
                     textView.setText("正在定位");
                     imageView.setImageResource(R.drawable.ic_near_me_black_24dp);
                 break;
@@ -114,6 +114,9 @@ public class BaseRecyclerView extends RecyclerView {
                     ToastUtil.showToast(context,"网络不可用,请检查网络设置");
                 }
                 break;
+            case Fields.SEARCHING :
+                textView.setText("正在搜索");
+                imageView.setImageResource(R.drawable.ic_youtube_searched_for_black_24dp);
         }
     }
 }

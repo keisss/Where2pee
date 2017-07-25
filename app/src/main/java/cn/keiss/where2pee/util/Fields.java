@@ -19,9 +19,13 @@ public class Fields {
 
 
     //emptyView的status
-    public static final int GETING_POSITION = 0;
+    public static final int GETTING_POSITION = 0;
     public static final int GET_POSITION_FAILED = 1;
     public static final int SEARCH_RESULT_EMPTY = 2;
     public static final int NET_UNAVAILABLE = 3;
+    public static final int SEARCHING = 4;
+
+
+    public static final String AMAP_USER_ID = "kQj6ccch";
 
 }

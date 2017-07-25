@@ -31,13 +31,19 @@
             android:layout_weight="1"
             android:text="@string/sort"/>
     </LinearLayout>
-   <android.support.v7.widget.RecyclerView
+
+    <include layout="@layout/view_empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout_filter_bar"/>
+
+   <cn.keiss.where2pee.view.BaseRecyclerView
        android:id="@+id/rv_toilet_list"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:layout_below="@+id/layout_filter_bar">
 
-   </android.support.v7.widget.RecyclerView>
+   </cn.keiss.where2pee.view.BaseRecyclerView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_add_new_toilet"

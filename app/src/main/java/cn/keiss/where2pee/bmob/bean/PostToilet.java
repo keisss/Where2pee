@@ -7,6 +7,8 @@ import cn.bmob.v3.BmobObject;
  */
 
 public class PostToilet extends BmobObject {
+
+    private String AmapId;
     private User user;
     private Integer dislikeNumber;
     private String geoHash;
@@ -21,7 +23,7 @@ public class PostToilet extends BmobObject {
     private String markContent;
     private String openTime;
     private Integer rating;
-    private Integer usedTImes;
+    private Integer usedTimes;
 
     public User getUser() {
         return user;
@@ -135,13 +137,6 @@ public class PostToilet extends BmobObject {
         this.rating = rating;
     }
 
-    public Integer getUsedTImes() {
-        return usedTImes;
-    }
-
-    public void setUsedTImes(Integer usedTImes) {
-        this.usedTImes = usedTImes;
-    }
 
     public Integer getBadTimes() {
         return badTimes;
@@ -154,7 +149,18 @@ public class PostToilet extends BmobObject {
     private Integer badTimes;
 
 
+    public Integer getUsedTimes() {
+        return usedTimes;
+    }
 
+    public void setUsedTimes(Integer usedTimes) {
+        this.usedTimes = usedTimes;
+    }
+    public String getAmapId() {
+        return AmapId;
+    }
 
-
+    public void setAmapId(String amapId) {
+        AmapId = amapId;
+    }
 }

@@ -32,7 +32,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'cn.bmob.android:bmob-sdk:3.5.5'
-    compile 'com.amap.api:3dmap:latest.integration'
+    //compile 'com.amap.api:3dmap:latest.integration'
     compile 'com.amap.api:navi-3dmap:latest.integration'
     compile 'com.amap.api:search:latest.integration'
     compile 'com.amap.api:location:latest.integration'

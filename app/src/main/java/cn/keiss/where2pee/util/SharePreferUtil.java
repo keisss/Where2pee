@@ -15,7 +15,7 @@ public class SharePreferUtil {
 
     private static   SharedPreferences getUserPreferences(){
         if (preferences ==null){
-            preferences = ContextGetter.getInstance().getSharedPreferences(Fields.SHARE_PREFERENCE_NAME,0);
+            preferences = ContextGetter.getInstance().getApplicationContext().getSharedPreferences(Fields.SHARE_PREFERENCE_NAME,0);
         }
         return preferences;
     }
