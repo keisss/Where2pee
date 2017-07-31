@@ -117,6 +117,10 @@ public class BaseRecyclerView extends RecyclerView {
             case Fields.SEARCHING :
                 textView.setText("正在搜索");
                 imageView.setImageResource(R.drawable.ic_youtube_searched_for_black_24dp);
+                break;
+            case Fields.SEARCH_RESULT_EMPTY:
+                textView.setText("附近未搜到卫生间");
+                imageView.setImageResource(R.drawable.ic_youtube_searched_for_black_24dp);
         }
     }
 }

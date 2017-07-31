@@ -2,6 +2,7 @@ package cn.keiss.where2pee.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,24 +88,50 @@ public class ToiletListRecyclerViewAdapter extends RecyclerView.Adapter<ToiletLi
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         ToiletListItem item = toiletListItems.get(position);
-        holder.tvItemToiletListDistance.setText(item.getDistance());
+         String picUrl = item.getPicUrl();
+         int ratingNum = item.getRatingNum();
+         int thumbUpNum = item.getThumbUpNum();
+         int thumbDownNum = item.getThumbDownNum();
+         boolean isFree = item.isFree();
+         boolean isHavePaper = item.isHavePaper();
+         boolean isWash = item.isWash();
+         int distance = item.getDistance();
+
+
+        //holder.ivItemToiletListPhoto.setImageResource();
+        holder.ratingBarItemToiletList.setRating(ratingNum);
+        holder.tvItemToiletListUpNum.setText(String.valueOf(thumbUpNum));
+        holder.tvItemToiletListDownNum.setText(String.valueOf(thumbDownNum));
+        if (isFree)
+            holder.tvItemToiletListCharge.setText("不收费");
+        else
+            holder.tvItemToiletListCharge.setText("收费");
+
+        if (isHavePaper)
+            holder.tvItemToiletListHavePaper.setText("提供手纸");
+        else
+            holder.tvItemToiletListHavePaper.setText("不提供手纸");
+
+        if (isWash)
+            holder.tvItemToiletListWashHand.setText("可洗手");
+        else
+            holder.tvItemToiletListWashHand.setText("不可洗手");
+        holder.tvItemToiletListDistance.setText(String.valueOf(distance));
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return toiletListItems.size();
     }
-
-
 
 
     public void setItems(List<ToiletListItem> items){
         toiletListItems.clear();
         for (ToiletListItem item  :items) {
             toiletListItems.add(item);
-            notifyItemInserted(0);
         }
+        notifyItemInserted(0);
     }
 
     public void removeItems(){

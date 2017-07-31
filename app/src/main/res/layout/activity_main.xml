@@ -33,6 +33,7 @@
     </LinearLayout>
 
     <include layout="@layout/view_empty_view"
+        android:id="@+id/view_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/layout_filter_bar"/>

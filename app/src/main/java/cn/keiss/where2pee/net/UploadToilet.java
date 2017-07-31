@@ -45,51 +45,57 @@ public class UploadToilet {
     }
 
     //批量上传从高德地图处得到的卫生间
-    public static void upload(List<PoiItem> poiItems, final ResultCallback callback){
+    public static void upload(final List<PoiItem> poiItems, final ResultCallback callback){
         if (NetState.networkConnected()){
-
-            List<BmobObject> toilets = new ArrayList<>();
-                if (poiItems != null && poiItems.size() != 0){
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    List<BmobObject> toilets = new ArrayList<>();
+                    if (poiItems != null && poiItems.size() != 0){
                         User user = new User();
                         user.setObjectId(Fields.AMAP_USER_ID);
 
-                    for (PoiItem poiItem :poiItems) {
-                        double lat = poiItem.getLatLonPoint().getLatitude();
-                        double lon = poiItem.getLatLonPoint().getLongitude();
+                        for (PoiItem poiItem :poiItems) {
+                            double lat = poiItem.getLatLonPoint().getLatitude();
+                            double lon = poiItem.getLatLonPoint().getLongitude();
 
-                        PostToilet postToilet = new PostToilet();
-                        postToilet.setAmapId(poiItem.getPoiId());
-                        postToilet.setBadTimes(0);
-                        postToilet.setDislikeNumber(0);
-                        postToilet.setFree(true);
-                        postToilet.setLatitude(lat);
-                        postToilet.setLongitude(lon);
-                        postToilet.setLikeNumber(0);
-                        postToilet.setPaper(false);
-                        postToilet.setRating(Integer.valueOf(poiItem.getPoiExtension().getmRating()));
-                        postToilet.setOpenTime(poiItem.getPoiExtension().getOpentime());
-                        postToilet.setLocationDescription(poiItem.getSnippet());
-                        postToilet.setUsedTimes(0);
-                        postToilet.setUseFul(true);
-                        postToilet.setUser(user);
-                        postToilet.setWater(false);
+                            PostToilet postToilet = new PostToilet();
+                            postToilet.setAmapId(poiItem.getPoiId());
+                            postToilet.setBadTimes(0);
+                            postToilet.setDislikeNumber(0);
+                            postToilet.setFree(true);
+                            postToilet.setLatitude(lat);
+                            postToilet.setLongitude(lon);
+                            postToilet.setLikeNumber(0);
+                            postToilet.setPaper(false);
+                            postToilet.setRating(Integer.valueOf(poiItem.getPoiExtension().getmRating()));
+                            postToilet.setOpenTime(poiItem.getPoiExtension().getOpentime());
+                            postToilet.setLocationDescription(poiItem.getSnippet());
+                            postToilet.setUsedTimes(0);
+                            postToilet.setUseFul(true);
+                            postToilet.setUser(user);
+                            postToilet.setWater(false);
 
-                        GeoHash geoHash = new GeoHash(lat,lon);
-                        postToilet.setGeoHash(geoHash.getGeoHashBase32());
-                        toilets.add(postToilet);
-                    }
-                    new BmobBatch().insertBatch(toilets).doBatch(new QueryListListener<BatchResult>() {
-                        @Override
-                        public void done(List<BatchResult> list, BmobException e) {
-                            if (e == null){
-                                callback.onSuccess();
-                            }else {
-                                callback.onError(e);
-                            }
+                            GeoHash geoHash = new GeoHash(lat,lon);
+                            postToilet.setGeoHash(geoHash.getGeoHashBase32());
+                            toilets.add(postToilet);
                         }
-                    });
+                        new BmobBatch().insertBatch(toilets).doBatch(new QueryListListener<BatchResult>() {
+                            @Override
+                            public void done(List<BatchResult> list, BmobException e) {
+                                if (e == null){
+                                    callback.onSuccess();
+                                }else {
+                                    callback.onError(e);
+                                }
+                            }
+                        });
 
+                    }
                 }
+            };
+            new Thread(runnable).start();
+
         }else {
             callback.onNetUnavailable();
         }

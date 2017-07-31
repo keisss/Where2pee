@@ -4,32 +4,26 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
-import com.amap.api.services.nearby.UploadInfo;
 import com.amap.api.services.poisearch.Photo;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
-
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
-
 import cn.bmob.v3.exception.BmobException;
 import cn.keiss.where2pee.R;
 import cn.keiss.where2pee.adapter.ToiletListRecyclerViewAdapter;
 import cn.keiss.where2pee.bean.ToiletListItem;
-import cn.keiss.where2pee.bmob.bean.PostToilet;
+import cn.keiss.where2pee.geohash.GeoHash;
 import cn.keiss.where2pee.listener.RecyclerViewItemClickListener;
 import cn.keiss.where2pee.net.ResultCallback;
 import cn.keiss.where2pee.net.UploadToilet;
@@ -51,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
     private AMapLocationClient mapLocationClient;
     private int getLocationCount = 0;
     //附近搜索距离
-    private int boundDistance = 500;
+    private int boundDistance = 1000;
 
     private ToiletListRecyclerViewAdapter adapter;
 
@@ -81,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
         btnMainFilterSort = (Button) findViewById(R.id.btn_main_filter_sort);
         rvToiletList = (BaseRecyclerView) findViewById(R.id.rv_toilet_list);
         fabAddNewToilet = (FloatingActionButton) findViewById(R.id.fab_add_new_toilet);
-        emptyView = findViewById(R.id.layout_empty_view);
+        emptyView = findViewById(R.id.view_empty);
     }
 
 
@@ -159,7 +153,9 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
     // 从高德地图处搜索结果
     @Override
     public void onPoiSearched(PoiResult poiResult, int i) {
+
           List<PoiItem> poiItems = poiResult.getPois();
+        emptyView.setVisibility(View.GONE);
         if (poiItems.size() == 0){
             rvToiletList.setEmptyViewHint(Fields.SEARCH_RESULT_EMPTY);
         }else {
@@ -181,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
                     toilet.setPicUrl(photos.get(0).getUrl());
                 toilets.add(toilet);
             }
+
             adapter.setItems(toilets);
             //上传高德地图搜索到的数据
             UploadToilet.upload(poiItems, new ResultCallback() {
@@ -213,4 +210,18 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
     }
 
 
+
+    //从Bmob搜索附近卫生间
+    private void searchToiletFromBmob(final double latitude, final double longitude){
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                GeoHash geoHash = new GeoHash(latitude,longitude);
+                List<String> geoHashs =  geoHash.getGeoHashBase32For9();
+
+
+            }
+        };
+
+    }
 }
